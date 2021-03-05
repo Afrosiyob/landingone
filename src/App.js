@@ -1,32 +1,29 @@
-import React from "react";
-import styled from "styled-components";
-import Header from "./components/Header/Header";
-import Navbar from "./components/NavBar/Navbar";
-import { device } from "./style/device/device";
+import React, { createContext } from "react";
+import Component from "./components/Component";
+
+export const UserContext = createContext();
+export const ChanelContext = createContext();
 
 function App() {
-  const App = styled.div`
-    background: linear-gradient(
-      30deg,
-      rgb(244, 145, 172),
-      #ebf8e1,
-      rgb(255, 202, 157)
-    );
-    transition: all 0.2s linear;
-    padding: 15px;
-    @media ${device.tablet} {
-      padding: 15px 30px;
-    }
-    @media ${device.laptop} {
-      padding: 30px 70px;
-    }
-  `;
-
   return (
-    <App>
-      <Navbar />
-      <Header />
-    </App>
+    <div
+      style={{
+        backgroundColor: "rgb(33,33,33)",
+        width: "100%",
+        height: "100vh",
+        color: "white",
+        display: "flex",
+        justifyContent: "center",
+        alignContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <UserContext.Provider value="Afrosiyob">
+        <ChanelContext.Provider value="KOKO">
+          <Component />
+        </ChanelContext.Provider>
+      </UserContext.Provider>
+    </div>
   );
 }
 
