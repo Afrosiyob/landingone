@@ -1,32 +1,24 @@
-import React, { useReducer } from "react";
-
-const initialState = 0;
-
-const reducer = (state, action) => {
-  switch (action) {
-    case "INCREMENT":
-      return state + 1;
-
-    case "DECREMENT":
-      return state - 1;
-
-    case "RESET":
-      return initialState;
-
-    default:
-      return state;
-  }
-};
+import React, { useContext } from "react";
+import { UserContext } from "../App";
 
 const CounterOne = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
+  const user = useContext(UserContext);
   return (
     <div>
-      this is counter one {state}
-      <button onClick={() => dispatch("INCREMENT")}>increment</button>
-      <button onClick={() => dispatch("DECREMENT")}>decrement</button>
-      <button onClick={() => dispatch("RESET")}>reset</button>
+      this is counter one {user.countState.counterOne}
+      <button
+        onClick={() => user.countDispatch({ type: "INCREMENT", payload: 1 })}
+      >
+        increment
+      </button>
+      <button
+        onClick={() => user.countDispatch({ type: "DECREMENT", payload: 5 })}
+      >
+        decrement
+      </button>
+      <button onClick={() => user.countDispatch({ type: "RESET" })}>
+        reset
+      </button>
     </div>
   );
 };

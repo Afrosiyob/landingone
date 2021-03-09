@@ -1,10 +1,32 @@
-import React, { createContext } from "react";
+import React, { createContext, useReducer } from "react";
+
 import Component from "./components/Component";
 
 export const UserContext = createContext();
 export const ChanelContext = createContext();
 
+const initialState = {
+  counterOne: 0,
+};
+
+const reducer = (state, { type, payload }) => {
+  switch (type) {
+    case "INCREMENT":
+      return { ...state, counterOne: state.counterOne + payload };
+
+    case "DECREMENT":
+      return { ...state, counterOne: state.counterOne - payload };
+
+    case "RESET":
+      return { ...state, counterOne: 0 };
+
+    default:
+      return state;
+  }
+};
+
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <div
       style={{
@@ -18,10 +40,10 @@ function App() {
         alignItems: "center",
       }}
     >
-      <UserContext.Provider value="Afrosiyob">
-        <ChanelContext.Provider value="KOKO">
-          <Component />
-        </ChanelContext.Provider>
+      <UserContext.Provider
+        value={{ countState: state, countDispatch: dispatch }}
+      >
+        <Component />
       </UserContext.Provider>
     </div>
   );
