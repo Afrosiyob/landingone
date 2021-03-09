@@ -1,6 +1,9 @@
 import React, { useEffect, useReducer } from "react";
+import ComponentRef from "./ComponentRef";
 
 import CounterOne from "./CounterOne";
+import DocTitleOne from "./DocTitleOne";
+import HookTimer from "./HookTimer";
 
 const INIT_STATE = {
   getLoading: false,
@@ -41,6 +44,9 @@ const ComponentChild = () => {
   return (
     <div>
       <CounterOne />
+      <ComponentRef />
+      <HookTimer />
+      <DocTitleOne />
     </div>
   );
 };
