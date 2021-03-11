@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import useDocumentTitle from "./useDocumentTitle";
+import useTitleChange from "./useTitleChange";
 
 function DocTitleOne() {
   const [count, setCount] = useState(0);
 
-  useDocumentTitle(count);
+  // useDocumentTitle(count);
+  useTitleChange(count);
 
   return (
     <div>
